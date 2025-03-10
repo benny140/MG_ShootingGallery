@@ -29,7 +29,7 @@ public class Game1 : Game
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
-        IsMouseVisible = true;
+        IsMouseVisible = false;
     }
 
     protected override void Initialize()
@@ -104,6 +104,19 @@ public class Game1 : Game
         );
         _spriteBatch.Draw(spriteTarget, targetPosition, Color.White);
         _spriteBatch.Draw(spriteCrosshair, crosshairPosition, Color.White);
+        if (timer <= 0)
+        {
+            _spriteBatch.DrawString(
+                fontGallery,
+                "Game Over",
+                new Vector2(
+                    GraphicsDevice.Viewport.Width / 2
+                        - fontGallery.MeasureString("Game Over").X / 2,
+                    GraphicsDevice.Viewport.Height / 2 - fontGallery.LineSpacing / 2
+                ),
+                Color.White
+            );
+        }
         _spriteBatch.End();
 
         base.Draw(gameTime);
