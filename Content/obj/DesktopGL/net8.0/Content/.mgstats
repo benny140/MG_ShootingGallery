@@ -1,0 +1,5 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/benja/Projects/monogamecourse/Content/crosshairs.png","C:/Users/benja/Projects/monogamecourse/Content/bin/DesktopGL/Content/crosshairs.xnb","TextureProcessor","Texture2DContent",1892,10085,0.1226313
+"C:/Users/benja/Projects/monogamecourse/Content/galleryFont.spritefont","C:/Users/benja/Projects/monogamecourse/Content/bin/DesktopGL/Content/galleryFont.xnb","FontDescriptionProcessor","SpriteFontContent",2065,70690,0.113183
+"C:/Users/benja/Projects/monogamecourse/Content/sky.png","C:/Users/benja/Projects/monogamecourse/Content/bin/DesktopGL/Content/sky.xnb","TextureProcessor","Texture2DContent",1079607,9216085,0.2824207
+"C:/Users/benja/Projects/monogamecourse/Content/target.png","C:/Users/benja/Projects/monogamecourse/Content/bin/DesktopGL/Content/target.xnb","TextureProcessor","Texture2DContent",3395,32485,0.0036601
