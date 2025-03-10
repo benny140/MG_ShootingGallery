@@ -21,7 +21,7 @@ public class Game1 : Game
     private const int targetRadius = 45;
     private const int crosshairRadius = 25;
     private Random random = new Random();
-    private float timer = 10f; // 10-second timer
+    private double timer = 10d; // 10-second timer
     private bool isTimerRunning = true; // Track if the timer is active
     private int score = 0; // Track the player's score
 
@@ -60,7 +60,7 @@ public class Game1 : Game
         if (isTimerRunning)
         {
             // Update the timer
-            timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            timer -= (double)gameTime.ElapsedGameTime.TotalSeconds;
             if (timer <= 0)
             {
                 timer = 0;
