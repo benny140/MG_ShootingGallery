@@ -15,10 +15,11 @@ public class Game1 : Game
     Texture2D spriteBackground;
     SpriteFont fontGallery;
     MouseState mouseState;
-
+    Vector2 crosshairPosition;
     Vector2 targetPosition = new Vector2(300, 300);
 
     private const int targetRadius = 45;
+    private const int crosshairRadius = 25;
     private Random random = new Random();
     private float timer = 10f; // 10-second timer
     private bool isTimerRunning = true; // Track if the timer is active
@@ -68,6 +69,10 @@ public class Game1 : Game
 
             // Check if user has scored
             mouseState = Mouse.GetState();
+            crosshairPosition = new Vector2(
+                mouseState.X - crosshairRadius,
+                mouseState.Y - crosshairRadius
+            );
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
                 float distance = Vector2.Distance(
@@ -98,6 +103,7 @@ public class Game1 : Game
             Color.White
         );
         _spriteBatch.Draw(spriteTarget, targetPosition, Color.White);
+        _spriteBatch.Draw(spriteCrosshair, crosshairPosition, Color.White);
         _spriteBatch.End();
 
         base.Draw(gameTime);
