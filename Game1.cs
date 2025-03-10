@@ -15,12 +15,13 @@ public class Game1 : Game
     Texture2D spriteBackground;
     SpriteFont fontGallery;
     MouseState mouseState;
-
+    Vector2 crosshairPosition;
     Vector2 targetPosition = new Vector2(300, 300);
 
     private const int targetRadius = 45;
+    private const int crosshairRadius = 25;
     private Random random = new Random();
-    private float timer = 10f; // 10-second timer
+    private double timer = 10d; // 10-second timer
     private bool isTimerRunning = true; // Track if the timer is active
     private int score = 0; // Track the player's score
 
@@ -28,7 +29,7 @@ public class Game1 : Game
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
-        IsMouseVisible = true;
+        IsMouseVisible = false;
     }
 
     protected override void Initialize()
@@ -59,7 +60,7 @@ public class Game1 : Game
         if (isTimerRunning)
         {
             // Update the timer
-            timer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            timer -= (double)gameTime.ElapsedGameTime.TotalSeconds;
             if (timer <= 0)
             {
                 timer = 0;
@@ -68,6 +69,10 @@ public class Game1 : Game
 
             // Check if user has scored
             mouseState = Mouse.GetState();
+            crosshairPosition = new Vector2(
+                mouseState.X - crosshairRadius,
+                mouseState.Y - crosshairRadius
+            );
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
                 float distance = Vector2.Distance(
@@ -93,11 +98,25 @@ public class Game1 : Game
         _spriteBatch.DrawString(fontGallery, $"Score: {score}", new Vector2(0, 0), Color.White);
         _spriteBatch.DrawString(
             fontGallery,
-            $"Time: {(int)timer}",
+            $"Time: {Math.Ceiling(timer)}", // Rounds up to the nearest whole number
             new Vector2(0, 30),
             Color.White
         );
         _spriteBatch.Draw(spriteTarget, targetPosition, Color.White);
+        _spriteBatch.Draw(spriteCrosshair, crosshairPosition, Color.White);
+        if (timer <= 0)
+        {
+            _spriteBatch.DrawString(
+                fontGallery,
+                "Game Over",
+                new Vector2(
+                    GraphicsDevice.Viewport.Width / 2
+                        - fontGallery.MeasureString("Game Over").X / 2,
+                    GraphicsDevice.Viewport.Height / 2 - fontGallery.LineSpacing / 2
+                ),
+                Color.White
+            );
+        }
         _spriteBatch.End();
 
         base.Draw(gameTime);
