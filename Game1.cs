@@ -98,7 +98,7 @@ public class Game1 : Game
         _spriteBatch.DrawString(fontGallery, $"Score: {score}", new Vector2(0, 0), Color.White);
         _spriteBatch.DrawString(
             fontGallery,
-            $"Time: {(int)timer}",
+            $"Time: {Math.Ceiling(timer)}", // Rounds up to the nearest whole number
             new Vector2(0, 30),
             Color.White
         );
